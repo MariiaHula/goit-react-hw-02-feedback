@@ -2,7 +2,7 @@ import { Component } from 'react';
 import FeedbackOptions from './FeedbackOptions';
 import Statistics from './Statistics';
 import Section from './Section';
-import { Notification } from './Notification';
+import Notification from './Notification';
 
 export class App extends Component {
   state = {
@@ -57,7 +57,7 @@ export class App extends Component {
           ))}
         </Section>
         <Section title="Statistics">
-          {feedback === 0 ? (
+          {feedback === 0 ? ( //тут нажаль треба порівнювати із нульовим значенням властивостей стейту, тож "=== 0"
             <Notification message="No feedback given" />
           ) : (
             <Statistics

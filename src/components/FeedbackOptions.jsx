@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { Button } from 'styles/Styles';
 
 const FeedbackOptions = ({ option, onLiveFeedback }) => {
   return (
-    <button name={option} onClick={onLiveFeedback}>
+    <Button name={option} onClick={onLiveFeedback}>
       {option}
-    </button>
+    </Button>
   );
 };
 

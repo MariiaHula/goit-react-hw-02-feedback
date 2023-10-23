@@ -1,5 +1,13 @@
 import React from 'react';
+import PropTypes from 'prop-types';
+import { Wrapper1 } from 'styles/Styles';
 
-export const Notification = ({ message }) => {
-  return <div>{message}</div>;
+const Notification = ({ message }) => {
+  return <Wrapper1>{message}</Wrapper1>;
 };
+
+Notification.propTypes = {
+  message: PropTypes.string,
+};
+
+export default Notification;
