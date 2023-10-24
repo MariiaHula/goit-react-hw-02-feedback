@@ -11,8 +11,8 @@ export class App extends Component {
     bad: 0,
   };
 
-  handleChangeButton = e => {
-    switch (e.target.name) {
+  handleChangeButton = state => {
+    switch (state) {
       case 'good':
         this.setState(prevState => ({ good: prevState.good + 1 }));
         break;
@@ -47,13 +47,10 @@ export class App extends Component {
     return (
       <>
         <Section title="Please leave feedback">
-          {options.map(option => (
-            <FeedbackOptions
-              key={option}
-              option={option}
-              onLiveFeedback={this.handleChangeButton}
-            />
-          ))}
+          <FeedbackOptions
+            options={options}
+            onLeaveFeedback={this.handleChangeButton}
+          />
         </Section>
         <Section title="Statistics">
           {!totalFeedback ? (

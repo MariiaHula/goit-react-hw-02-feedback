@@ -1,18 +1,26 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Button } from 'styles/Styles';
+import { Button, Wrapper1 } from 'styles/Styles';
 
-const FeedbackOptions = ({ option, onLiveFeedback }) => {
+const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   return (
-    <Button name={option} onClick={onLiveFeedback}>
-      {option}
-    </Button>
+    <Wrapper1>
+      {options.map(option => (
+        <Button
+          key={option}
+          type="button"
+          onClick={() => onLeaveFeedback(option)}
+        >
+          {option}
+        </Button>
+      ))}
+    </Wrapper1>
   );
 };
 
 FeedbackOptions.propTypes = {
-  options: PropTypes.string,
-  onLiveFeedback: PropTypes.func,
+  options: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
+  onLeaveFeedback: PropTypes.func.isRequired,
 };
 
 export default FeedbackOptions;
