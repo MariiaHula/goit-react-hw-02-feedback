@@ -14,13 +14,13 @@ export class App extends Component {
   handleChangeButton = e => {
     switch (e.target.name) {
       case 'good':
-        this.setState(prevState => ({ good: +prevState.good + 1 }));
+        this.setState(prevState => ({ good: prevState.good + 1 }));
         break;
       case 'neutral':
-        this.setState(prevState => ({ neutral: +prevState.neutral + 1 }));
+        this.setState(prevState => ({ neutral: prevState.neutral + 1 }));
         break;
       case 'bad':
-        this.setState(prevState => ({ bad: +prevState.bad + 1 }));
+        this.setState(prevState => ({ bad: prevState.bad + 1 }));
         break;
 
       default:
@@ -42,30 +42,29 @@ export class App extends Component {
   render() {
     const { good, neutral, bad } = this.state;
     const options = Object.keys(this.state);
-    const feedback = this.countTotalFeedback();
-    const positive = this.countPositiveFeedbackPercentage();
-
+    const totalFeedback = this.countTotalFeedback();
+    const positivePercentage = this.countPositiveFeedbackPercentage();
     return (
       <>
         <Section title="Please leave feedback">
           {options.map(option => (
             <FeedbackOptions
-              key={crypto.randomUUID()}
+              key={option}
               option={option}
               onLiveFeedback={this.handleChangeButton}
             />
           ))}
         </Section>
         <Section title="Statistics">
-          {feedback === 0 ? ( //тут нажаль треба порівнювати із нульовим значенням властивостей стейту, тож "=== 0"
+          {!totalFeedback ? (
             <Notification message="No feedback given" />
           ) : (
             <Statistics
               good={good}
               neutral={neutral}
               bad={bad}
-              total={feedback}
-              positivePercentage={positive}
+              total={totalFeedback}
+              positivePercentage={positivePercentage}
             />
           )}
         </Section>
